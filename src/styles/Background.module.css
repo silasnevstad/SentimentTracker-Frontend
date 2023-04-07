@@ -1,0 +1,48 @@
+.shape {
+    position: absolute;
+    overflow: hidden;
+}
+
+@keyframes slideUp {
+    0% {
+        transform: translateY(100%);
+    }
+    100% {
+        transform: translateY(0%);
+    }
+}
+
+.shapeBottomLeft {
+    width: 45%;
+    bottom: 0;
+    left: 0;
+    rotate: 180deg;
+}
+
+.shapeRight {
+    bottom: 0;
+    right: 0;
+    width: 45%;
+    rotate: 90deg;
+    margin-top: 35%;
+}
+
+.shapeMiddle {
+    width: 40%;
+    top: 0;
+    right: 0;
+}
+
+.shapeMiddleLeft {
+    width: 40%;
+    rotate: 270deg;
+    top: 0;
+    left: 0;
+}
+
+.shapeBottomRight {
+    bottom: 25%;
+    left: 0;
+    width: 12%;
+    rotate: 160deg;
+}

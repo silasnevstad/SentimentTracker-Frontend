@@ -1,0 +1,16 @@
+.input {
+    min-height: 50px;
+    max-width: 350px;
+    color: #eee;
+    font-size: 23px;
+    width: 13rem;
+    padding: .2em 1rem;
+    border: 1px solid rgba(0, 112, 255, 1);
+    border-radius: 6px 0 0 6px;
+    background-color: transparent;
+}
+
+.input:focus, .input:focus-visible {
+    border-color: rgb(0, 81, 255);
+    outline: none;
+}

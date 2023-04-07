@@ -1,0 +1,11 @@
+.footer-container {
+    width: 100%;
+    position: absolute;
+    bottom: .8em;
+}
+
+.footer-text {
+    color: #ddddddcc;
+    font-size: 1.5rem;
+    font-weight: semi-bold;
+}
