@@ -23,3 +23,21 @@
     text-align: center;
     max-width: 55vw;
 }
+
+@media (max-width: 768px) {
+    .intro-message {
+        padding: 1em;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .intro-message-title {
+        font-size: 1.45rem;
+    }
+
+    .intro-message-text {
+        font-size: 1.25rem;
+        max-width: 80vw;
+    }
+}

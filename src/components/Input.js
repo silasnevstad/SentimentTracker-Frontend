@@ -15,7 +15,7 @@ function Input({ text, setText }) {
             } else {
                 clearInterval(interval);
             }
-        }, Math.floor(Math.random() * 50) + 50);
+        }, Math.floor(Math.random() * 50) + 70);
     };
 
     useEffect(() => {
@@ -23,11 +23,11 @@ function Input({ text, setText }) {
         animatePlaceholder(placeholder);
 
         const interval = setInterval(() => {
-            // new placeholder
+            // new placeholder, different from the current one
             let newPlaceholder = placeholders[Math.floor(Math.random() * placeholders.length)];
-
-            // change the placeholder
-            setPlaceholder(newPlaceholder);
+            while (newPlaceholder === placeholder) {
+                newPlaceholder = placeholders[Math.floor(Math.random() * placeholders.length)];
+            }
 
             // animate the placeholder
             animatePlaceholder(newPlaceholder);
