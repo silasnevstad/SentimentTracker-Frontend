@@ -15,7 +15,12 @@ const useSentiment = (keyword, setIsLoading, setError, filter) => {
       url = url.replace(/#/g, '%23');
 
       // Fetch sentiment summary from Flask API...
-      axios.get(url)
+      axios.get(url, {
+        headers: {
+          'Access-Control-Allow-Origin': '*',
+          'Content-Type': 'application/json',
+        }
+      })
         .then((response) => {
           console.log(response)
           if (response.data.error) {
