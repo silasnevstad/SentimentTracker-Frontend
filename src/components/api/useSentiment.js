@@ -16,6 +16,8 @@ const useSentiment = (keyword, setIsLoading, setError, filter) => {
 
       // Fetch sentiment summary from Flask API...
       axios.get(url, {
+        method: 'GET',
+        mode: 'cors',
         headers: {
           'Access-Control-Allow-Origin': '*',
           'Content-Type': 'application/json',
