@@ -20,6 +20,9 @@ function App() {
   const sentimentData = useSentiment(searchTerm, setIsLoading, setError, filter);
 
   const handleButtonClick = useCallback(() => {
+    if (isLoading) {
+      return;
+    }
     if (keyword !== '') {
       setSearchTerm(keyword);
     }
@@ -30,7 +33,7 @@ function App() {
       <Background />
       <main className="App-main">
         <Switcher filter={filter} setFilter={setFilter} />
-        <InputField text={keyword} setText={setKeyword} handleButtonClick={handleButtonClick} />
+        <InputField text={keyword} setText={setKeyword} handleButtonClick={handleButtonClick} loading={isLoading} />
         {!sentimentData && !isLoading && !error && <IntroMessage />}
         {isLoading && <LoadingView />}
         {error && <ErrorMessage />}
