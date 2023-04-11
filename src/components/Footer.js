@@ -4,9 +4,6 @@ import '../styles/Footer.css';
 function Footer() {
     return (
         <div className="footer-container">
-            <div className="footer">  
-                <text className="footer-text">Data from Twitter Tweets and Reddit Posts </text>
-            </div>
             <div className="footer-logos">
                 <a href="http://www.reddit.com/" >
                     <img className="reddit-icon" src={require('./images/redditLogo.png')} alt="reddit" />
@@ -15,6 +12,10 @@ function Footer() {
                     <img className="twitter-icon" src={require('./images/twitterLogo.png')} alt="tweet" />
                 </a>
             </div>
+            <div className="footer">  
+                <text className="footer-text">Data from Twitter Tweets and Reddit Posts </text>
+            </div>
+
         </div>
     );
 }

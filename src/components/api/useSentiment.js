@@ -24,7 +24,7 @@ const useSentiment = (keyword, setIsLoading, setError, filter) => {
           setIsLoading(false);
         })
         .catch((error) => {
-          console.error('Error fetching sentiment summary:', error);
+          console.error('Error fetching sentiment:', error);
           setIsLoading(false);
         });
     }

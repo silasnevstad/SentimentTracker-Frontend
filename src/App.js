@@ -14,7 +14,7 @@ import useSentiment from './components/api/useSentiment';
 function App() {
   const [keyword, setKeyword] = useState('');
   const [searchTerm, setSearchTerm] = useState('');
-  const [filter, setFilter] = useState('balanced');
+  const [filter, setFilter] = useState('precision');
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(false);
   const sentimentData = useSentiment(searchTerm, setIsLoading, setError, filter);
