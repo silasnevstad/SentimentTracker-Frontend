@@ -4,17 +4,17 @@ import '../styles/Switcher.css';
 function Switcher({ filter, setFilter }) {
 
     const handleSwitchToggle = (e) => {
-        setFilter(e.target.checked ? 'recent' : 'all');
+        setFilter(e.target.checked ? 'precision' : 'turbo');
     };
 
     return (
         <div className="switch-container">
             <text
                 className={`switch-text-all ${
-                    filter === 'all' ? 'selected' : ''
+                    filter === 'turbo' ? 'selected' : ''
                 }`}
             >
-                All
+                Turbo
             </text>
 
             <label className="switch">
@@ -22,17 +22,17 @@ function Switcher({ filter, setFilter }) {
                     type="checkbox"
                     className="chk"
                     onChange={handleSwitchToggle}
-                    checked={filter === 'recent'}
+                    checked={filter === 'precision'}
                 />
                 <span className="slider"></span>
             </label>
 
             <text
                 className={`switch-text ${
-                    filter === 'recent' ? 'selected' : ''
+                    filter === 'precision' ? 'selected' : ''
                 }`}
             >
-                Recent
+                Precision
             </text>
         </div>
     );

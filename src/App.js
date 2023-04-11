@@ -14,10 +14,10 @@ import useSentiment from './components/api/useSentiment';
 function App() {
   const [keyword, setKeyword] = useState('');
   const [searchTerm, setSearchTerm] = useState('');
-  const [filter, setFilter] = useState('recent');
+  const [filter, setFilter] = useState('balanced');
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(false);
-  const sentimentData = useSentiment(searchTerm, setIsLoading, setError);
+  const sentimentData = useSentiment(searchTerm, setIsLoading, setError, filter);
 
   const handleButtonClick = useCallback(() => {
     if (keyword !== '') {
@@ -34,7 +34,7 @@ function App() {
         {!sentimentData && !isLoading && !error && <IntroMessage />}
         {isLoading && <LoadingView />}
         {error && <ErrorMessage />}
-        {sentimentData && !isLoading && !error && <TrackView text={sentimentData.keyword} scores={sentimentData.scores} summary={sentimentData.summary} keywords={sentimentData.keywords} numberOfTweets={sentimentData.tweetsAnalysed} isLoading={isLoading} />}
+        {sentimentData && !isLoading && !error && <TrackView text={sentimentData.keyword} scores={sentimentData.scores} summary={sentimentData.summary} keywords={sentimentData.keywords} numberOfTweets={sentimentData.tweetsAnalysed} numberOfPosts={sentimentData.redditPostsAnalysed} />}
       </main>
       <Footer />
     </div>

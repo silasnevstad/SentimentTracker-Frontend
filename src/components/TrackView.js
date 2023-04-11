@@ -2,10 +2,11 @@ import React, { useState, useEffect } from 'react';
 import '../styles/TrackView.css';
 import RadarChart from './RadarChart';
 
-function TrackView({ text, scores, summary, keywords, numberOfTweets }) {
+function TrackView({ text, scores, summary, keywords, numberOfTweets, numberOfPosts }) {
     // type out the title, number of tweets and summary
     const [title, setTitle] = useState('');
     const [numTweetsString, setNumTweetsString] = useState('');
+    const [numPostsString, setNumPostsString] = useState('');
     const [summaryString, setSummaryString] = useState('');
 
     const animateTitle = (title) => {
@@ -21,18 +22,30 @@ function TrackView({ text, scores, summary, keywords, numberOfTweets }) {
         }, Math.floor(Math.random() * 10) + 20);
     };
 
-    const animateNumTweets = (numTweetsString) => {
-        // type out the number of tweets
+    const animateNums = (numTweets, numPosts) => {
+        // type out the number of tweets and posts
         let i = 0;
-        let string = numTweetsString + ' tweets analysed';
+        let tweetsString = numTweets + ' tweets';
+        let postsString = numPosts + ' posts';
         const interval = setInterval(() => {
-            if (i < string.length) {
-                setNumTweetsString(string.substring(0, i + 1));
+            if (i < tweetsString.length) {
+                setNumTweetsString(tweetsString.substring(0, i + 1));
                 i++;
             } else {
                 clearInterval(interval);
             }
-        }, Math.floor(Math.random() * 10) + 20);
+        }, Math.floor(Math.random() * 1) + 5);
+
+        i = 0;
+        const interval2 = setInterval(() => {
+            if (i < postsString.length) {
+                setNumPostsString(postsString.substring(0, i + 1));
+                i++;
+            } else {
+                clearInterval(interval2);
+            }
+        }, Math.floor(Math.random() * 1) + 5);
+
     };
 
     const animateSummary = (summaryString) => {
@@ -48,12 +61,12 @@ function TrackView({ text, scores, summary, keywords, numberOfTweets }) {
         }, Math.floor(Math.random() * 1) + 5);
     };
 
-    const animateAll = (title, numTweetsString, summaryString) => {
+    const animateAll = (title, numTweetsString, numPostsString, summaryString) => {
         // animate the title
         animateTitle(title);
         
         // animate the number of tweets
-        animateNumTweets(numTweetsString);
+        animateNums(numTweetsString, numPostsString);
 
         // animate the summary
         animateSummary(summaryString);
@@ -61,7 +74,7 @@ function TrackView({ text, scores, summary, keywords, numberOfTweets }) {
 
     // animate the title, number of tweets and summary when the component mounts
     useEffect(() => {
-        animateAll(text, numberOfTweets, summary);
+        animateAll(text, numberOfTweets, numberOfPosts, summary);
     }, []);
 
     return (
@@ -73,14 +86,20 @@ function TrackView({ text, scores, summary, keywords, numberOfTweets }) {
                         <RadarChart scores={scores} />
                     </div>
                     <div className="track-view-body-rest">
-                        <div className="track-view-body-number-of-tweets">
-                            {/* <text className="track-view-body-number-of-tweets-text">
+                        <div className="track-view-body-number-view">
+                            <div className="track-view-body-number-of-tweets">
+                                <img className="track-view-body-number-of-tweets-icon" src={require('./images/twitterLogo.png')} alt="tweet" />
+                                <text className="track-view-body-number-of-tweets-text">
+                                    {numTweetsString}
+                                </text>
                                 
-                            </text> */}
-                            <img className="track-view-body-number-of-tweets-icon" src={require('./images/twitterLogo.png')} alt="tweet" />
-                            <text className="track-view-body-number-of-tweets-text">
-                                {numTweetsString}
-                            </text>
+                            </div>
+                            <div className="track-view-body-number-of-posts">
+                                <img className="track-view-body-number-of-posts-icon" src={require('./images/redditLogo.png')} alt="post" />
+                                <text className="track-view-body-number-of-tweets-text">
+                                    {numPostsString}
+                                </text>
+                            </div>
                         </div>
                         <div className="track-view-header">
                             <text className="track-view-header-text">{title}</text>

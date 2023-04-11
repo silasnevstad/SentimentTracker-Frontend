@@ -4,8 +4,16 @@ import '../styles/Footer.css';
 function Footer() {
     return (
         <div className="footer-container">
-            <div className="footer">
-                <text className="footer-text">Sentiment/Emotion Analysis from Twitter Tweets </text>
+            <div className="footer">  
+                <text className="footer-text">Data from Twitter Tweets and Reddit Posts </text>
+            </div>
+            <div className="footer-logos">
+                <a href="http://www.reddit.com/" >
+                    <img className="reddit-icon" src={require('./images/redditLogo.png')} alt="reddit" />
+                </a>
+                <a href="http://www.twitter.com/" >
+                    <img className="twitter-icon" src={require('./images/twitterLogo.png')} alt="tweet" />
+                </a>
             </div>
         </div>
     );

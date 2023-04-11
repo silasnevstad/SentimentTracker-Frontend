@@ -6,6 +6,38 @@
 
 .footer-text {
     color: #ddddddcc;
-    font-size: 1.5rem;
+    font-size: 1.4rem;
     font-weight: semi-bold;
+    opacity: .8;
+}
+
+
+img {
+    opacity: .7;
+}
+
+.twitter-icon {
+    width: 2em;
+    height: 1.8em;
+    margin-right: 0.5em;
+}
+
+.reddit-icon {
+    width: 2em;
+    height: 2em;
+    margin-right: 0.5em;
+}
+
+.footer-logos {
+    display: flex;
+    flex-direction: row;
+    gap: 1em;
+    align-items: center;
+    justify-content: center;
+    padding-top: 0.8em;
+}
+
+img:hover {
+    opacity: .9;
+    transform: matrix3d(1.1, 0, 0, 0, 0, 1.1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
 }

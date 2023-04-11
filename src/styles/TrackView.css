@@ -57,6 +57,19 @@
     font-weight: bold;
 }
 
+.track-view-body-number-view {
+    display: flex;
+    flex-direction: row;
+    gap: 1em;
+    align-self: flex-end;
+
+    /* align-items: center; */
+    /* justify-content:s center; */
+    /* width: 100%; */
+    /* padding: 0em; */
+    /* padding-top: 5em; */
+}
+
 .track-view-body-number-of-tweets {
     padding-left: 1em;
     margin-top: 4em;
@@ -67,9 +80,14 @@
     border-radius: 19px;
 }
 
-.track-view-body-number-of-tweets-image {
-    width: 1em;
-    height: 1em;
+.track-view-body-number-of-posts {
+    padding-left: 1em;
+    margin-top: 4em;
+    display: flex;
+    align-self: flex-end;
+    background-color: #333;
+    padding: 0.9em;
+    border-radius: 19px;
 }
 
 .track-view-body-number-of-tweets-text {
@@ -78,6 +96,16 @@
     font-weight: 700;
     padding-left: 0.4em;
     padding-right: 0.4em;
+}
+
+.track-view-body-number-of-tweets-icon {
+    width: 1.7em;
+    height: 1.6em;
+}
+
+.track-view-body-number-of-posts-icon {
+    width: 1.6em;
+    height: 1.6em;
 }
 
 .track-view-body-content {
