@@ -34,7 +34,17 @@ function App() {
         {!sentimentData && !isLoading && !error && <IntroMessage />}
         {isLoading && <LoadingView />}
         {error && <ErrorMessage />}
-        {sentimentData && !isLoading && !error && <TrackView text={sentimentData.keyword} scores={sentimentData.scores} summary={sentimentData.summary} keywords={sentimentData.keywords} numberOfTweets={sentimentData.tweetsAnalysed} numberOfPosts={sentimentData.redditPostsAnalysed} />}
+        {sentimentData && !isLoading && !error && 
+          <TrackView 
+            text={sentimentData.keyword} 
+            scores={sentimentData.scores} 
+            summary={sentimentData.summary} 
+            keywords={sentimentData.keywords} 
+            numberOfTweets={sentimentData.tweetsAnalysed} 
+            numberOfPosts={sentimentData.redditPostsAnalysed} 
+            numberOfNews={sentimentData.newsAnalysed}
+          />
+        }
       </main>
       <Footer />
     </div>

@@ -6,10 +6,10 @@ function Footer() {
         <div className="footer-container">
             <div className="footer-logos">
                 <a href="http://www.reddit.com/" >
-                    <img className="reddit-icon" src={require('./images/redditLogo.png')} alt="reddit" />
+                    <img className="footer-img  reddit-icon" src={require('./images/redditLogo.png')} alt="reddit" />
                 </a>
                 <a href="http://www.twitter.com/" >
-                    <img className="twitter-icon" src={require('./images/twitterLogo.png')} alt="tweet" />
+                    <img className="footer-img twitter-icon" src={require('./images/twitterLogo.png')} alt="tweet" />
                 </a>
             </div>
             <div className="footer">  
