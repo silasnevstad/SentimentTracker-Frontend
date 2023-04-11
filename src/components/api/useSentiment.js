@@ -19,8 +19,10 @@ const useSentiment = (keyword, setIsLoading, setError, filter) => {
         method: 'GET',
         mode: 'cors',
         headers: {
-          'Access-Control-Allow-Origin': '*',
+          'Access-Control-Allow-Origin': 'http://senttrac.com',
+          'Acces-Control-Allow-Headers': 'Content-Type',
           'Content-Type': 'application/json',
+          'Access-Control-Max-Age': '1728000',
         }
       })
         .then((response) => {
