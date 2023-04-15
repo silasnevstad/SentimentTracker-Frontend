@@ -12,7 +12,7 @@ function Footer() {
                     <img className="footer-img twitter-icon" src={require('./images/twitterLogo.png')} alt="tweet" />
                 </a>
                 <a href="https://newsapi.org/" >
-                    <img className="footer-img twitter-icon" src={require('./images/newsIcon.png')} alt="tweet" />
+                    <img className="footer-img news-icon" src={require('./images/newsIcon.png')} alt="tweet" />
                 </a>
             </div>
             <div className="footer">  

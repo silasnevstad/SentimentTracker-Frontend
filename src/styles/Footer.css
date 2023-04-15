@@ -5,7 +5,7 @@
 }
 
 .footer-text {
-    color: #ddddddcc;
+    color: #eeeeeeff;
     font-size: 1.4rem;
     font-weight: semi-bold;
     opacity: .8;
@@ -27,6 +27,12 @@
     margin-right: 0.5em;
 }
 
+.news-icon {
+    width: 2em;
+    height: 2em;
+    margin-right: 0.5em;
+}
+
 .footer-logos {
     display: flex;
     flex-direction: row;
@@ -39,4 +45,46 @@
 .footer-img:hover {
     opacity: .9;
     transform: matrix3d(1.1, 0, 0, 0, 0, 1.1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
+}
+
+@media (max-width: 768px) {
+    .footer-container {
+        bottom: .2em;
+    }
+    
+    .footer-text {
+        font-size: 1.1rem;
+    }
+    
+    .twitter-icon {
+        width: 1.5em;
+        height: 1.3em;
+        margin-right: 0.2em;
+    }
+    
+    .reddit-icon {
+        width: 1.5em;
+        height: 1.5em;
+        margin-right: 0.2em;
+    }
+
+    .news-icon {
+        width: 1.6em;
+        height: 1.6em;
+        margin-right: 0.2em;
+    }
+    
+    .footer-logos {
+        display: flex;
+        flex-direction: row;
+        gap: 1em;
+        align-items: center;
+        justify-content: center;
+        padding-bottom: 0.8em;
+    }
+    
+    .footer-img:hover {
+        opacity: .9;
+        transform: matrix3d(1.1, 0, 0, 0, 0, 1.1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
+    }
 }

@@ -130,11 +130,14 @@ function TrackView({ text, scores, summary, keywords, numberOfTweets, numberOfPo
                         <RadarChart scores={scores} />
                     </div>
                     <div className="track-view-body-rest">
+                        <div className="track-view-header">
+                            <text className="track-view-header-text">{title}</text>
+                        </div>
                         <div className="track-view-body-number track-view-body-number-view">
                             {numberOfNews > 0 &&
                                 <div className="track-view-body-number-of-news">
                                     <img className="track-view-body-number-of-news-icon" src={require('./images/newsIcon.png')} alt="tweet" />
-                                    <text className="track-view-body-number-of-tweets-text">
+                                    <text className="track-view-body-number-of-text">
                                         {numNewsString}
                                     </text>
                                 
@@ -144,7 +147,7 @@ function TrackView({ text, scores, summary, keywords, numberOfTweets, numberOfPo
                             {numberOfTweets > 0 &&
                                 <div className="track-view-body-number-of-tweets">
                                     <img className="track-view-body-number-of-tweets-icon" src={require('./images/twitterLogo.png')} alt="tweet" />
-                                    <text className="track-view-body-number-of-tweets-text">
+                                    <text className="track-view-body-number-of-text">
                                         {numTweetsString}
                                     </text>
                                     
@@ -154,14 +157,11 @@ function TrackView({ text, scores, summary, keywords, numberOfTweets, numberOfPo
                             {numberOfPosts > 0 &&
                                 <div className="track-view-body-number-of-posts">
                                     <img className="track-view-body-number-of-posts-icon" src={require('./images/redditLogo.png')} alt="post" />
-                                    <text className="track-view-body-number-of-tweets-text">
+                                    <text className="track-view-body-number-of-text">
                                         {numPostsString}
                                     </text>
                                 </div>
                             }
-                        </div>
-                        <div className="track-view-header">
-                            <text className="track-view-header-text">{title}</text>
                         </div>
                         <div className="track-view-body-content">
                             <text className="track-view-body-content-text">{summaryString}</text>

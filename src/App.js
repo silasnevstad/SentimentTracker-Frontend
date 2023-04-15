@@ -29,7 +29,7 @@ function App() {
   }, [keyword]);
 
   return (
-    <div className="App">
+    <div className={`App ${isLoading ? 'loading' : ''}`}>
       <Background />
       <main className="App-main">
         <Switcher filter={filter} setFilter={setFilter} />

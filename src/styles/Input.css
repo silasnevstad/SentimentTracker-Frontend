@@ -14,3 +14,13 @@
     border-color: rgb(0, 81, 255);
     outline: none;
 }
+
+.loading {
+    /* border:rgb(0, 30, 94); */
+    opacity: 0.8;
+}
+
+.loading:focus-visible, .loading:focus {
+    border-color: rgb(0, 30, 94);
+    outline: none;
+}

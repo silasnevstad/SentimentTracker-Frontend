@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import '../styles/Input.css';
 
-function Input({ text, setText }) {
+function Input({ text, setText, loading }) {
     const placeholders = ['#SPY', '#AAPL', '#AMZN', '#FB', '#GOOG', '#MSFT', '#NFLX', '#PYPL', 'Man Utd', 'New York Rangers', 'ChatGPT', 'Elon Musk', 'Donald Trump', 'FIFA', 'Goldman Sachs', 'Boston Celtics', '#GSW', 'Will Smith'];
     const [placeholder, setPlaceholder] = useState(placeholders[Math.floor(Math.random() * placeholders.length)]);
 
@@ -43,7 +43,7 @@ function Input({ text, setText }) {
                 placeholder={placeholder}
                 value={text}
                 onChange={(e) => setText(e.target.value)}
-                className="input"
+                className={`input ${loading ? 'loading' : ''}`}
             />
         </div>
     );

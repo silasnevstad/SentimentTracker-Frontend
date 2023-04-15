@@ -2,13 +2,15 @@
   position: relative;
   overflow: hidden;
   width: 100vw;
-  height: 100vh;
+  min-height: 100vh;
   text-align: center;
   background-color: #2c2c2c;
-  /* background-image: url(./components/images/bg-svg.svg);
-  background-size: cover; */
-  /* background-repeat: no-repeat; */
-  /* background-position: center;   */
+}
+
+.loading {
+  background-color: rgba(0, 0, 0, 1);
+  position: absolute;
+  opacity: 0.8;
 }
 
 .App-main {

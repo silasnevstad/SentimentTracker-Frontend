@@ -17,6 +17,9 @@
 
 
 .loading {
-    background-color: rgb(0, 30, 94);
+    opacity: 0.8;
+}
+
+.loading:hover {
     opacity: 0.8;
 }
