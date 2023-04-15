@@ -29,28 +29,31 @@ function App() {
   }, [keyword]);
 
   return (
-    <div className={`App ${isLoading ? 'loading' : ''}`}>
-      <Background />
-      <main className="App-main">
-        <Switcher filter={filter} setFilter={setFilter} />
-        <InputField text={keyword} setText={setKeyword} handleButtonClick={handleButtonClick} loading={isLoading} />
-        {!sentimentData && !isLoading && !error && <IntroMessage />}
-        {isLoading && <LoadingView />}
-        {error && <ErrorMessage />}
-        {sentimentData && !isLoading && !error && 
-          <TrackView 
-            text={sentimentData.keyword} 
-            scores={sentimentData.scores} 
-            summary={sentimentData.summary} 
-            keywords={sentimentData.keywords} 
-            numberOfTweets={sentimentData.tweetsAnalysed} 
-            numberOfPosts={sentimentData.redditPostsAnalysed} 
-            numberOfNews={sentimentData.newsAnalysed}
-          />
-        }
-      </main>
-      <Footer />
-    </div>
+    <>
+      {isLoading && <div className='loading-overlay'></div>}
+      <div className={`App`}>
+        <Background />
+        <main className="App-main">
+          <Switcher filter={filter} setFilter={setFilter} />
+          <InputField text={keyword} setText={setKeyword} handleButtonClick={handleButtonClick} loading={isLoading} />
+          {!sentimentData && !isLoading && !error && <IntroMessage />}
+          {isLoading && <LoadingView />}
+          {error && <ErrorMessage />}
+          {sentimentData && !isLoading && !error && 
+            <TrackView 
+              text={sentimentData.keyword} 
+              scores={sentimentData.scores} 
+              summary={sentimentData.summary} 
+              keywords={sentimentData.keywords} 
+              numberOfTweets={sentimentData.tweetsAnalysed} 
+              numberOfPosts={sentimentData.redditPostsAnalysed} 
+              numberOfNews={sentimentData.newsAnalysed}
+            />
+          }
+        </main>
+        <Footer />
+      </div>
+    </>
   );
 }
 
