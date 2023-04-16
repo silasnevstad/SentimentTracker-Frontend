@@ -13,14 +13,14 @@ const useSentiment = (keyword, setIsLoading, setError, filter) => {
       console.log('model:', model)
 
       // make url, if keyword has hashtags, replace with %23
-      let url = `http://senttrac-backend-dev.us-west-2.elasticbeanstalk.com/sentiment`//`http://0.0.0.0:8000/sentiment?keyword=${keyword}&model=${model}` // `http://senitment--backend-env.eba-tpnwk3fv.us-west-2.elasticbeanstalk.com/sentiment?keyword=${keyword}&model=${model}`; // `http://127.0.0.1:5000/sentiment?keyword=${keyword}&model=${model}`
+      let url = `https://senttrac-backend-dev.us-west-2.elasticbeanstalk.com/sentiment`//`http://0.0.0.0:8000/sentiment?keyword=${keyword}&model=${model}` // `http://senitment--backend-env.eba-tpnwk3fv.us-west-2.elasticbeanstalk.com/sentiment?keyword=${keyword}&model=${model}`; // `http://127.0.0.1:5000/sentiment?keyword=${keyword}&model=${model}`
       url = url.replace(/#/g, '%23');
 
       // Fetch sentiment summary from Flask API...
       axios.get(url, {
         method: 'GET',
         params: {
-          keyword: keyword,
+          keyword: keyword, 
           model: model,
         },
         headers: {
