@@ -7,20 +7,20 @@
 }
 
 .switch-text {
-    font-size: 25px;
+    font-size: 1.5em;
     font-weight: bold;
-    padding: .5em 1.5em;
+    padding: .5em 1em;
 }
 
 .switch-text-all {
-    font-size: 25px;
+    font-size: 1.5em;
     font-weight: bold;
     margin-left: .5em;
-    padding: .5em 2em;
+    padding: .5em 1em;
 }
 
 .switch {
-    font-size: 22px;
+    font-size: 1em;
     position: relative;
     display: inline-block;
     width: 1.2em;
