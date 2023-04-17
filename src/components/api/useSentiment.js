@@ -29,20 +29,20 @@ const useSentiment = (keyword, setIsLoading, setError, filter) => {
         timeout: 10000000000,
       })
         .then((response) => {
-          console.log(response)
           if (response.data.error) {
             setError(true);
           } else {
             setError(false);
             setData(response.data);
           }
-          console.log(response.data)
-          setIsLoading(false);
         })
         .catch((error) => {
-          console.error('Error fetching sentiment:', error);
+          setError(true);
+        })
+        .finally(() => {
           setIsLoading(false);
-        });
+        }
+      );
     }
   }, [keyword, setIsLoading]);
 
