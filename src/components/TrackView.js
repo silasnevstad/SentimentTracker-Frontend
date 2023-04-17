@@ -110,7 +110,7 @@ function TrackView({ text, scores, summary, keywords, numberOfTweets, numberOfPo
         animateNums(numTweetsString, numPostsString, numNewsString);
 
         // animate the summary
-        animateSelection(summaryString, setSummaryString, 1, 1);
+        animateSelection(summaryString, setSummaryString, 0, 1);
 
         // animate the keywords
         animateKeywords(keywords);
