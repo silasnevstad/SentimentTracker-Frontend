@@ -6,15 +6,15 @@ function LoadingView() {
         <div className="loading-view-container">
             <div className="loading-view">
                 <div class="loader">
-                    <div class="l"></div>
-                    <div class="l"></div>
-                    <div class="l"></div>
-                    <div class="l"></div>
-                    <div class="l"></div>
-                    <div class="l"></div>
-                    <div class="l"></div>
-                    <div class="l"></div>
-                    <div class="l"></div>
+                    <div className="l"></div>
+                    <div className="l"></div>
+                    <div className="l"></div>
+                    <div className="l"></div>
+                    <div className="l"></div>
+                    <div className="l"></div>
+                    <div className="l"></div>
+                    <div className="l"></div>
+                    <div className="l"></div>
                 </div>
             </div>
         </div>

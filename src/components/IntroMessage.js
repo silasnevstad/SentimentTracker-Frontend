@@ -10,7 +10,7 @@ function IntroMessage() {
                 </text>
                 <text className="intro-message-text">
                 {/* Our AI-powered tool analyzes recent tweets, offering a visual representation of emotions and their intensity. With this information, gain insight into the prevailing emotions associated with your query, presented in an easy-to-understand format */}
-                🔍 Uncover the hidden emotions behind any topic using our AI-powered sentiment analysis tool. Harnessing real-time Twitter and Reddit data, we reveal an engaging visual snapshot 🎨, letting you grasp the emotions 😃😞😤 and intensity 🔥 tied to your search query.
+                🔍 Uncover the emotions behind any topic using our AI-powered sentiment analysis tool. Harnessing real-time news headlines, Twitter tweets and Reddit posts, we reveal an engaging snapshot 🎨, letting you grasp the emotions 😃😞😤 and intensity 🔥 tied to your search query.
                 </text>
             </div>
         </div>
