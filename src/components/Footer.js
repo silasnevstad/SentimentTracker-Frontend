@@ -18,11 +18,11 @@ function Footer({ setShowAboutModal, setShowContactModal }) {
             <div className="footer">  
                 <p className="footer-text">
                     Data from Twitter Tweets, Reddit Posts, and news headlines.
-                    <span style={{padding: '0 .5em'}}>|</span>    
+                    <span style={{padding: '0 .5em', opacity: '0.5'}}>|</span>    
                     <a className="footer-link" onClick={() => setShowAboutModal(true)}>
                         <span className="footer-link-text">About</span>
                     </a>
-                    <span style={{padding: '0 .5em'}}>|</span>
+                    <span style={{padding: '0 .5em', opacity: '0.5'}}>|</span>
                     <a className="footer-link" onClick={() => setShowContactModal(true)}>
                         <span className="footer-link-text">Contact</span>
                     </a>

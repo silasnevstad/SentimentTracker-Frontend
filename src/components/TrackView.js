@@ -8,21 +8,7 @@ function TrackView({ text, scores, summary, keywords, numberOfTweets, numberOfPo
     const [numTweetsString, setNumTweetsString] = useState('');
     const [numPostsString, setNumPostsString] = useState('');
     const [numNewsString, setNumNewsString] = useState('');
-    const [summaryString, setSummaryString] = useState('');
     const [keywordsString, setKeywordsString] = useState('');
-
-    const animateTitle = (title) => {
-        // type out the title
-        let i = 0;
-        const interval = setInterval(() => {
-            if (i < title.length) {
-                setTitle(title.substring(0, i + 1));
-                i++;
-            } else {
-                clearInterval(interval);
-            }
-        }, Math.floor(Math.random() * 10) + 20);
-    };
 
     const animateNums = (numTweets, numPosts, numNews) => {
         // type out the number of tweets and posts and news
@@ -59,19 +45,6 @@ function TrackView({ text, scores, summary, keywords, numberOfTweets, numberOfPo
         }, Math.floor(Math.random() * 10) + 50);
     };
 
-    const animateSummary = (summaryString) => {
-        // type out the summary
-        let i = 0;
-        const interval = setInterval(() => {
-            if (i < summaryString.length) {
-                setSummaryString(summaryString.substring(0, i + 1));
-                i++;
-            } else {
-                clearInterval(interval);
-            }
-        }, Math.floor(Math.random() * 1) + 5);
-    };
-
     const animateSelection = (selection, setSelection, randomInterval, minInterval) => {
         // type out the selection
         let i = 0;
@@ -84,8 +57,6 @@ function TrackView({ text, scores, summary, keywords, numberOfTweets, numberOfPo
             }
         }, Math.floor(Math.random() * randomInterval) + minInterval);
     };
-
-
 
     const animateKeywords = (keywords) => {
         // type out the keywords (list of strings)
@@ -102,32 +73,30 @@ function TrackView({ text, scores, summary, keywords, numberOfTweets, numberOfPo
         }, Math.floor(Math.random() * 10) + 10);
     };
 
-    const animateAll = (title, numTweetsString, numPostsString, numNewsString, summaryString, keywords) => {
-        // animate the title
-        animateSelection(title, setTitle, 20, 10);
-        
-        // animate the number of tweets
-        animateNums(numTweetsString, numPostsString, numNewsString);
 
-        // animate the summary
-        animateSelection(summaryString, setSummaryString, 0, 1);
-
-        // animate the keywords
-        animateKeywords(keywords);
-    };
 
     // animate the title, number of tweets and summary when the component mounts
     useEffect(() => {
+        const animateAll = (title, numTweetsString, numPostsString, numNewsString, summaryString, keywords) => {
+            // animate the title
+            animateSelection(title, setTitle, 20, 10);
+            
+            // animate the number of tweets
+            animateNums(numTweetsString, numPostsString, numNewsString);
+    
+            // animate the keywords
+            animateKeywords(keywords);
+        };
+
         animateAll(text, numberOfTweets, numberOfPosts, numberOfNews, summary, keywords);
-    }, []);
+    }, [text, numberOfTweets, numberOfPosts, numberOfNews, summary, keywords]);
 
     return (
         <div className="track-view-container">
             <div className="track-view">
-
                 <div className="track-view-body">
                     <div className="track-view-score">
-                        <RadarChart scores={scores} />
+                        <RadarChart scores={scores} labelSize={25} />
                     </div>
                     <div className="track-view-body-rest">
                         <div className="track-view-header">
@@ -164,7 +133,7 @@ function TrackView({ text, scores, summary, keywords, numberOfTweets, numberOfPo
                             }
                         </div>
                         <div className="track-view-body-content">
-                            <text className="track-view-body-content-text">{summaryString}</text>
+                            <text className="track-view-body-content-text">{summary}</text>
                         </div>
                         <div className="track-view-body-key-words">
                             <text className="track-view-body-key-words-title">
@@ -185,7 +154,10 @@ function TrackView({ text, scores, summary, keywords, numberOfTweets, numberOfPo
                         </div>
                     </div>
                 </div>
+                <div className="line" style={{width: '100%', height: '1px', backgroundColor: '#666', marginTop: '1em'}}></div>
             </div>
+
+            
         </div>
     );
 }

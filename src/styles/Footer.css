@@ -54,8 +54,8 @@
 }
 
 .footer-link:hover {
-    color: #ddddddf0;
-    text-decoration: underline;
+    color: #bbbbbbf0;
+    /* text-decoration: underline; */
 }
 
 @media (max-width: 768px) {

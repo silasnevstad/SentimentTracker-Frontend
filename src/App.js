@@ -8,7 +8,7 @@ import AboutModal from './components/AboutModal';
 import ContactModal from './components/ContactModal';
 import IntroMessage from './components/IntroMessage';
 import ErrorMessage from './components/ErrorMessage';
-import TrackView from './components/TrackView';
+import TrackViewCompact from './components/TrackViewCompact';
 import Footer from './components/Footer';
 import useSentiment from './components/api/useSentiment';
 
@@ -29,7 +29,7 @@ function App() {
     if (keyword !== '') {
       setSearchTerm(keyword);
     }
-  }, [keyword]);
+  }, [keyword, isLoading]);
 
   return (
     <>
@@ -42,19 +42,28 @@ function App() {
           {showContactModal && <ContactModal onClose={() => setShowContactModal(false)} />}
           <Switcher filter={filter} setFilter={setFilter} />
           <InputField text={keyword} setText={setKeyword} handleButtonClick={handleButtonClick} loading={isLoading} />
-          {!sentimentData && !isLoading && !error && <IntroMessage />}
+          {/* // if sentimentData is empty and isLoading is false and error is false, render IntroMessage */}
+          {sentimentData.length === 0 && !isLoading && !error && <IntroMessage />}
           {isLoading && <LoadingView />}
           {error && <ErrorMessage />}
           {sentimentData && !isLoading && !error && 
-            <TrackView 
-              text={sentimentData.keyword} 
-              scores={sentimentData.scores} 
-              summary={sentimentData.summary} 
-              keywords={sentimentData.keywords} 
-              numberOfTweets={sentimentData.tweetsAnalysed} 
-              numberOfPosts={sentimentData.redditPostsAnalysed} 
-              numberOfNews={sentimentData.newsAnalysed}
-            />
+            // loop through sentimentData array and render each item
+            <div className='sentiment-scroll-view'>
+              {sentimentData.map((sentiment, index) => (
+                <>
+                  <TrackViewCompact
+                    text={sentiment.keyword} 
+                    scores={sentiment.scores} 
+                    summary={sentiment.summary} 
+                    keywords={sentiment.keywords} 
+                    numberOfTweets={sentiment.tweetsAnalysed} 
+                    numberOfPosts={sentiment.redditPostsAnalysed} 
+                    numberOfNews={sentiment.newsAnalysed}
+                    startExpanded={index === 0}
+                  />
+                </>
+              ))}
+            </div>
           }
         </main>
         <Footer setShowAboutModal={setShowAboutModal} setShowContactModal={setShowContactModal} />
