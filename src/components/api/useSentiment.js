@@ -48,7 +48,7 @@ function parseAllResponse(response) {
     }
     
   } catch (error) {
-    console.log(error);
+    // console.log(error);
   }
   return parsedResponse;
 }
@@ -90,7 +90,6 @@ const getSentiment = async (response, model) => {
       });
       break;
     } catch (error) {
-      console.log(`Error on attempt ${attempts + 1}: ${error}`);
       let numToRemove = Math.ceil(all_messages.length * removePercentage);
       all_messages = all_messages.slice(numToRemove);
       attempts++;
@@ -100,8 +99,6 @@ const getSentiment = async (response, model) => {
   if (!gpt_response) {
     throw new Error('Failed to get a response after maximum retries');
   }
-  
-  console.log('gpt_response: ', gpt_response['data']['choices'][0]['message']['content']);
   
   // parse response
   const parsedResponse = parseAllResponse(gpt_response['data']['choices'][0]['message']['content']);
@@ -130,9 +127,7 @@ const useSentiment = (keyword, setIsLoading, setError, filter) => {
         keyword: keyword,
       }).then(async (response) => {
         if (response.data) {
-          console.log(response.data);
           const sentiment = await getSentiment(response.data, model);
-          console.log('sentiment: ', sentiment);
           // add this sentiment to the data array (first element)
           setData((data) => [sentiment, ...data]);
           setError(false);
