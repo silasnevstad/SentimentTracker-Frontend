@@ -18,9 +18,9 @@
 .l,.l:nth-child(9) {
     margin: 0.25em;
     border-radius: 5em;
-    width: .8em;
+    width: .5em;
     background-color: #0070ff;
-    height: 5em;
+    height: 3em;
     box-shadow: 1px 1px 4px black;
     animation: load_5186 cubic-bezier(.41,.44,.72,.69) 2s infinite;
 }

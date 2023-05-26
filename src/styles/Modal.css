@@ -17,6 +17,7 @@
     position: relative;
     text-align: left;
     border-radius: 0.5rem;
+    width: 70%;
     /* max-width: 290px; */
     box-shadow: rgba(0, 0, 0, 0.6) 0px 4px 8px, rgba(0, 0, 0, 0.6) 0px 14px 26px -1px, rgba(0, 0, 0, 0.5) 0px -5px 0px inset;
     background-color: #333;
@@ -71,19 +72,22 @@
 .form-group {
     display: flex;
     flex-direction: column;
+    align-items: center;
     text-align: left;
     margin-bottom: 1rem;
 }
 
 .form-group input,
 .form-group textarea {
+    font-family: 'Open Sans', sans-serif;
     font-size: 1rem;
     padding: 0.5rem;
     border: 1px solid #aaa;
-    width: 25em;
+    width: 100%;
     border-radius: 0.375rem;
     color: #ddd;
     background-color: transparent;
+   
 }
 
 .submit {
@@ -156,18 +160,9 @@ textarea {
       opacity: 0;
     }
 }
-  
-
-@media (min-width: 640px) {
-    .card {
-        max-width: 640px;
-    }
-}
 
 @media (max-width: 768px) {
-    .card {
-        max-width: 450px;
-    }
+    
 }
 
 @media (max-width: 1024px) {
@@ -176,8 +171,8 @@ textarea {
     }
 
     .card {
-        padding: .5rem;
-        max-width: 450px;
+        padding: 0.3rem;
+        width: 90%;
     }
 
     .card p {
@@ -189,10 +184,15 @@ textarea {
         margin-top: .5rem;
     }
 
+    .form-group {
+        flex-wrap: nowrap;
+    }
+
     .form-group input,
     .form-group textarea {
         font-size: 1rem;
-        width: 20em;
+        width: 98%;
+        flex-wrap: nowrap;
     }
 }
 

@@ -33,7 +33,7 @@ function Input({ text, setText, loading }) {
             animatePlaceholder(newPlaceholder);
         }, 3000);
         return () => clearInterval(interval);
-    }, []);
+    }, [placeholder]);
 
 
     return (

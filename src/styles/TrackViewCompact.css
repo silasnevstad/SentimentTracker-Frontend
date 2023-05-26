@@ -9,7 +9,6 @@
     z-index: 5;
 }
 
-
 .compact-view {
     display: flex;
     flex-direction: row;
@@ -19,6 +18,7 @@
     width: 80vw;
     justify-content: space-between;
     margin-top: 1.8em;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15), 0 10px 10px rgba(0, 0, 0, 0.1);
 }
   
 .compact-view:hover {
@@ -26,7 +26,7 @@
 }
 
 .compact-score {
-    width: 15%;
+    width: 18%;
 }
 
 .compact-view-header {
@@ -43,43 +43,102 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    max-width: 50%;
-    height: 100%;
+    text-align: left;
+    max-width: 60%;
+    margin-top: -1.3em;
     color: #ddd;
-    font-size: 1.2rem;
+    font-size: 1.3rem;
+    font-weight: medium;
 }
   
 .compact-view h3 {
     margin: 0;
-    font-size: 2.2rem;
+    font-size: 2.3rem;
     font-weight: bold;
     color: #ddd;
 }
   
 .compact-view .data-counts {
     display: flex;
-    gap: 1.5em;
+    gap: .5em;
     color: #ddd;
 }
 
 .compact-view .data-counts-row {
     gap: 1em;
     color: #ddd;
+    background-color: #2a2a2a;
+    padding: .6em .7em;
+    border-radius: 5px;
 }
   
 .compact-view .data-counts p {
-    margin: 5px 0;
+    margin-top: 5px;
+    margin-bottom: 0;
+    font-size: 1.1rem;
+    font-weight: bold;
 }
   
 .compact-view .keywords {
     color: #ddd;
     opacity: 0.8;
+    display: flex;
+    align-items: flex-start;
+    text-align: left;
+    height: 100%;
 }
   
 .compact-view .keywords span {
-    padding: 2px 5px;
+    padding: 2px 4px;
     border-radius: 3px;
-    margin: 2px;
-    font-size: 0.9rem;
+    font-size: 1.2rem;
+    text-transform: capitalize;
 }
-  
+
+@media (max-width: 768px) {
+    .compact-view {
+        width: 90vw;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: center;
+    }
+
+    .compact-view-header {
+        flex-direction: row;
+        width: 96%;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 0.5em;
+        margin-left: 0.5em;
+
+    }
+
+    .compact-view h3 {
+        font-size: 1.8rem;
+    }
+
+    .compact-view-summary {
+        margin-left: .5em;
+        font-size: 1.1rem;
+        max-width: 97%;
+    }
+
+    .compact-view .keywords {
+        font-size: 1.1rem;
+        flex-wrap: wrap;
+        width: 100%;
+    }
+
+    .compact-view .data-counts {
+        margin-left: .5em;
+        font-size: 1.1rem;
+    }
+
+    .compact-score {
+        align-self: center;
+        width: 75%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}

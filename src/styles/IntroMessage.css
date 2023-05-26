@@ -25,6 +25,10 @@
 }
 
 @media (max-width: 768px) {
+    .intro-message-container {
+        margin-top: 0em;
+    }
+
     .intro-message {
         padding: 1em;
         display: flex;
@@ -34,6 +38,7 @@
 
     .intro-message-title {
         font-size: 1.45rem;
+        padding-bottom: 0em;
     }
 
     .intro-message-text {

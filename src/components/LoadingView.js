@@ -5,7 +5,7 @@ function LoadingView() {
     return (
         <div className="loading-view-container">
             <div className="loading-view">
-                <div class="loader">
+                <div className="loader">
                     <div className="l"></div>
                     <div className="l"></div>
                     <div className="l"></div>

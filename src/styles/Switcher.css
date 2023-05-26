@@ -2,8 +2,8 @@
 .switch-container {
     display: flex;
     align-self: center;
-    margin-bottom: 3%;
-    margin-bottom: 3em;
+    justify-content: center;
+    margin-bottom: 1em;
 }
 
 .switch-text {
@@ -25,6 +25,7 @@
     display: inline-block;
     width: 1.2em;
     height: 3.3em;
+    margin-top: 1.4em;
 }
   
   /* Hide default HTML checkbox */

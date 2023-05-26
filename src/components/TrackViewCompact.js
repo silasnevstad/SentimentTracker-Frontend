@@ -4,7 +4,20 @@ import TrackView from './TrackView';
 import '../styles/TrackViewCompact.css';
   
 const TrackViewCompact = ({ text, scores, summary, keywords, numberOfTweets, numberOfPosts, numberOfNews, startExpanded }) => {
+    const shortenSummary = (summary) => {
+        if (summary.length > 200) {
+            // shorten the summary but don't cut off a word
+            let i = 200;
+            while (summary[i] !== ' ') {
+                i--;
+            }
+            return summary.substring(0, i) + '...';
+        }
+        return summary;
+    };
+
     const [isExpanded, setIsExpanded] = useState(startExpanded);
+    const shortenedSummary = shortenSummary(summary);
 
     const compactView = (
 
@@ -17,26 +30,26 @@ const TrackViewCompact = ({ text, scores, summary, keywords, numberOfTweets, num
                         <p>{numberOfTweets}</p>
                     </div>
                     <div className="data-counts-row">
-                        <img className="track-view-body-number-of-posts-icon" src={require('./images/redditLogo.png')} alt="post" />
+                        <img className="track-view-body-number-of-icon" src={require('./images/redditLogo.png')} alt="post" />
                         <p>{numberOfPosts}</p>
                     </div>
                     <div className="data-counts-row">
-                        <img className="track-view-body-number-of-news-icon" src={require('./images/newsIcon.png')} alt="tweet" />
+                        <img className="track-view-body-number-of-icon" src={require('./images/newsIcon.png')} alt="tweet" />
                         <p>{numberOfNews}</p>
                     </div>
                 </div>
             </div>
             <div className="compact-view-summary">
-                <p>{summary.substring(0, 100)}...</p>
+                <p>{shortenedSummary}</p>
                 <div className="keywords">
                     {keywords.map((keyword, index) => (
                         <span key={keyword}>{keyword}{index < keywords.length - 1 ? ',' : ''}</span>
                     ))}
-            </div>
+                </div>
             </div>
             
             <div className="compact-score">
-                <RadarChart scores={scores} labelSize={10} />
+                <RadarChart scores={scores} labelSize={window.innerWidth > 600 ? 11 : 15} tickBackground={'#333'} />
             </div>
         </div>
     );

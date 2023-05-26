@@ -9,13 +9,13 @@ function Switcher({ filter, setFilter }) {
 
     return (
         <div className="switch-container">
-            <text
+            <p
                 className={`switch-text-all ${
                     filter === 'turbo' ? 'selected' : ''
                 }`}
             >
                 Turbo
-            </text>
+            </p>
 
             <label className="switch">
                 <input
@@ -27,13 +27,13 @@ function Switcher({ filter, setFilter }) {
                 <span className="slider"></span>
             </label>
 
-            <text
+            <p
                 className={`switch-text ${
                     filter === 'precision' ? 'selected' : ''
                 }`}
             >
                 Precision
-            </text>
+            </p>
         </div>
     );
 }

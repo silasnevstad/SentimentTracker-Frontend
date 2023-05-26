@@ -5,14 +5,14 @@ import '../styles/RadarChart.css';
 // Register the required components and controllers
 Chart.register(RadarController, PointElement, LineElement, RadialLinearScale, LinearScale, Filler);
 
-const RadarChart = ({ scores, labelSize }) => {
+const RadarChart = ({ scores, labelSize, tickBackground }) => {
     const fontColors = [
-        'rgb(255, 73, 105)',
-        'rgb(100, 20, 255)',
         'rgb(116, 217, 108)',
-        'rgb(108, 175, 217)',
-        'rgb(111, 119, 143)',
         'rgb(230, 252, 116)',
+        'rgb(108, 175, 217)',
+        'rgb(100, 20, 255)',
+        'rgb(255, 73, 105)',
+        'rgb(130, 152, 116)',
     ]
     const chartRef = useRef();
     const data = {
@@ -58,7 +58,7 @@ const RadarChart = ({ scores, labelSize }) => {
                             // stepsize: 50,
                             // textStrokeColor: 'rgb (54, 162, 235)',
                             // color: 'white',
-                            backdropColor: '#2c2c2c'
+                            backdropColor: tickBackground
                         },
                         anglelines: {
                             color: '#2c2c2c',
@@ -83,7 +83,7 @@ const RadarChart = ({ scores, labelSize }) => {
         };
         const chart = new Chart(chartRef.current, config);
         return () => chart.destroy();
-    }, [data, labelSize, fontColors]);
+    }, [data, labelSize, fontColors, tickBackground]);
 
     return (
         <div className="chart-container">

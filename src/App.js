@@ -56,9 +56,9 @@ function App() {
                     scores={sentiment.scores} 
                     summary={sentiment.summary} 
                     keywords={sentiment.keywords} 
-                    numberOfTweets={sentiment.tweetsAnalysed} 
-                    numberOfPosts={sentiment.redditPostsAnalysed} 
-                    numberOfNews={sentiment.newsAnalysed}
+                    numberOfTweets={sentiment.numTweets} 
+                    numberOfPosts={sentiment.numPosts} 
+                    numberOfNews={sentiment.numNews}
                     startExpanded={index === 0}
                   />
                 </>
