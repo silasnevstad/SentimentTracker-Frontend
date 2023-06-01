@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import './App.css';
 import Background from './components/Background';
 import InputField from './components/InputField';
@@ -20,7 +20,25 @@ function App() {
   const [error, setError] = useState(false);
   const [showAboutModal, setShowAboutModal] = useState(false);
   const [showContactModal, setShowContactModal] = useState(false);
-  const sentimentData = useSentiment(searchTerm, setIsLoading, setError, filter);
+  const [sentimentData, setSentimentData] = useState([]);
+  
+  const { getSentimentData, askAboutRawData } = useSentiment(setIsLoading, setError, filter);
+
+  useEffect(() => {
+    if (searchTerm !== '') {
+      const fetchSentimentData = async () => {
+        setIsLoading(true);
+        try {
+          const data = await getSentimentData(searchTerm);
+          setSentimentData((prevData) => [data, ...prevData]);
+        } catch (e) {
+          console.error(e);
+        }
+        setIsLoading(false);
+      };
+      fetchSentimentData();
+    }
+  }, [searchTerm, getSentimentData]);
 
   const handleButtonClick = useCallback(() => {
     if (isLoading) {
@@ -60,6 +78,7 @@ function App() {
                     numberOfPosts={sentiment.numPosts} 
                     numberOfNews={sentiment.numNews}
                     startExpanded={index === 0}
+                    askAboutRawData={askAboutRawData}
                   />
                 </>
               ))}

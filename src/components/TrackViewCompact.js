@@ -3,7 +3,11 @@ import RadarChart from './RadarChart';
 import TrackView from './TrackView';
 import '../styles/TrackViewCompact.css';
   
-const TrackViewCompact = ({ text, scores, summary, keywords, numberOfTweets, numberOfPosts, numberOfNews, startExpanded }) => {
+const TrackViewCompact = ({ text, scores, summary, keywords, numberOfTweets, numberOfPosts, numberOfNews, startExpanded, askAboutRawData }) => {
+    const toggleView = () => {
+        setIsExpanded(!isExpanded);
+    };
+
     const shortenSummary = (summary) => {
         if (summary.length > 200) {
             // shorten the summary but don't cut off a word
@@ -20,8 +24,7 @@ const TrackViewCompact = ({ text, scores, summary, keywords, numberOfTweets, num
     const shortenedSummary = shortenSummary(summary);
 
     const compactView = (
-
-        <div className="compact-view">
+        <div className="compact-view" onClick={toggleView}>
             <div className="compact-view-header">
                 <h3>{text}</h3>
                 <div className="data-counts">
@@ -42,8 +45,8 @@ const TrackViewCompact = ({ text, scores, summary, keywords, numberOfTweets, num
             <div className="compact-view-summary">
                 <p>{shortenedSummary}</p>
                 <div className="keywords">
-                    {keywords.map((keyword, index) => (
-                        <span key={keyword}>{keyword}{index < keywords.length - 1 ? ',' : ''}</span>
+                    {keywords.slice(0, 5).map((keyword, index) => (
+                        <span key={keyword}>{keyword}{index < 4 ? ',' : ''}</span>
                     ))}
                 </div>
             </div>
@@ -55,17 +58,11 @@ const TrackViewCompact = ({ text, scores, summary, keywords, numberOfTweets, num
     );
 
     const expandedView = (
-        // <div className="expanded-view">
-          <TrackView text={text} scores={scores} summary={summary} keywords={keywords} numberOfTweets={numberOfTweets} numberOfPosts={numberOfPosts} numberOfNews={numberOfNews} />
-        // </div>
+        <TrackView text={text} scores={scores} summary={summary} keywords={keywords} numberOfTweets={numberOfTweets} numberOfPosts={numberOfPosts} numberOfNews={numberOfNews} askAboutRawData={askAboutRawData} toggleView={toggleView} />
     );
-
-    const toggleView = () => {
-        setIsExpanded(!isExpanded);
-    };
   
     return (
-        <div className="track-view-compact" onClick={toggleView}>
+        <div className="track-view-compact">
           {isExpanded ? expandedView : compactView}
         </div>
     );

@@ -34,6 +34,8 @@
   flex-direction: column;
   align-items: center;
   margin-top: .5%;
+  max-width: 100vw;
+  overflow: hidden;
 }
 
 .sentiment-scroll-view {
@@ -44,8 +46,9 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-bottom: 10em;
+  /* padding-bottom: 10em; */
   gap: 2em;
+  overflow: hidden;
 }
 
 .sentiment-divider {

@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useCallback } from 'react';
 import axios from 'axios';
 const { Configuration, OpenAIApi } = require("openai");
 
@@ -110,38 +110,89 @@ const getSentiment = async (response, model) => {
   return parsedResponse
 }
 
-const useSentiment = (keyword, setIsLoading, setError, filter) => {
-  const [data, setData] = useState([]);
+const askAboutData = async (rawData, prompt, model) => {
+  let gpt_response;
+  let messages;
+  const maxRetries = 5;
+  const removePercentage = 0.35;  // Remove 20% of messages at each retry
+  let attempts = 0;
+  let { data } = rawData;
+  let { all_messages } = data;
+  const engineeredPrompt = `Given a series of tweets, posts and news headlines originating from this query ${rawData.keyword}. Answer the following question: ${prompt}. \n\n Here are the tweets, posts and news headlines:`;
+  messages = [{'role': 'system', 'content': engineeredPrompt}];
+  all_messages.forEach((message) => {
+    messages.push({'role': 'user', 'content': message});
+  });
 
-  useEffect(() => {
+  while (attempts < maxRetries) {
+    try {
+
+      gpt_response = await openai.createChatCompletion({
+        model: model,
+        messages: messages,
+      });
+
+      break;
+    } catch (error) {
+      let numToRemove = Math.ceil(all_messages.length * removePercentage);
+      all_messages = all_messages.slice(numToRemove);
+      attempts++;
+    }
+  }
+
+  if (!gpt_response) {
+    throw new Error('Failed to get a response after maximum retries');
+  }
+
+  // return the response
+  return gpt_response['data']['choices'][0]['message']['content'];
+}
+
+const useSentiment = (setIsLoading, setError, filter) => {
+  const [rawData, setRawData] = useState([]);
+
+  const getSentimentData = useCallback(async (keyword) => {
     if (keyword !== '') {
       setIsLoading(true);
-
+  
       let model = filter === 'precision' ? 'gpt-4' : 'gpt-3.5-turbo';
-
-      // make url, if keyword has hashtags, replace with %23
       let url = `https://boiling-lake-10566.herokuapp.com/`;
-
+  
+      let sentimentData = null;
+  
       // Fetch sentiment summary from Flask API...
-      axios.post(url + 'fetch', {
-        keyword: keyword,
-      }).then(async (response) => {
+      try {
+        const response = await axios.post(url + 'fetch', {
+          keyword: keyword,
+        });
+  
         if (response.data) {
+          setRawData((prev) => [...prev, response.data]); // set raw data here
           const sentiment = await getSentiment(response.data, model);
-          // add this sentiment to the data array (first element)
-          setData((data) => [sentiment, ...data]);
           setError(false);
+          sentimentData = sentiment; // set sentiment data here
         }
-        }).catch((error) => {
-          setError(true);
-        }).finally(() => {
-          setIsLoading(false);
-        }
-      );
+      } catch (error) {
+        setError(true);
+      } finally {
+        setIsLoading(false);
+      }
+  
+      return sentimentData;
     }
-  }, [keyword, setIsLoading, setError, filter]);
+  }, [setIsLoading, setError, filter]);
 
-  return data;
+  const askAboutRawData = async (prompt, keyword) => {
+    const data = rawData.find((data) => data.keyword === keyword);
+    if (!data) {
+        throw new Error('No raw data to ask about');
+    }
+    let model = filter === 'precision' ? 'gpt-4' : 'gpt-3.5-turbo';
+    return await askAboutData(data, prompt, model);
+};
+
+
+  return { getSentimentData, askAboutRawData };
 };
 
 export default useSentiment;
