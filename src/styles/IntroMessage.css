@@ -27,6 +27,7 @@
 @media (max-width: 768px) {
     .intro-message-container {
         margin-top: 0em;
+        width: 90vw;
     }
 
     .intro-message {

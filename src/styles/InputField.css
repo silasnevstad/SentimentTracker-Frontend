@@ -6,3 +6,10 @@
     justify-content: center;
     z-index: 5;
 }
+
+@media screen and (max-width: 768px) {
+    .inputfield-container {
+        /* flex-direction: row; */
+        transform: scale(0.9);
+    }
+}

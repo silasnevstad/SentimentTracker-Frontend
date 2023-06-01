@@ -70,6 +70,7 @@ function App() {
               {sentimentData.map((sentiment, index) => (
                 <>
                   <TrackViewCompact
+                    key={sentiment.keyword + sentiment.numTweets + sentiment.numPosts + sentiment.numNews}
                     text={sentiment.keyword} 
                     scores={sentiment.scores} 
                     summary={sentiment.summary} 

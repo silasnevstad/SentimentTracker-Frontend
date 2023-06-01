@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useMemo } from 'react';
 import '../styles/Input.css';
 
 function Input({ text, setText, loading }) {
-    const placeholders = ['#SPY', '#AAPL', '#AMZN', '#FB', '#GOOG', '#MSFT', '#NFLX', '#PYPL', 'Man Utd', 'New York Rangers', 'ChatGPT', 'Elon Musk', 'Donald Trump', 'FIFA', 'Goldman Sachs', 'Boston Celtics', '#GSW', 'Will Smith'];
+    const placeholders = useMemo(() => ['#SPY', '#AAPL', '#AMZN', '#FB', '#GOOG', '#MSFT', '#NFLX', '#PYPL', 'Man Utd', 'New York Rangers', 'ChatGPT', 'Elon Musk', 'Donald Trump', 'FIFA', 'Goldman Sachs', 'Boston Celtics', '#GSW', 'Will Smith'], []);
     const [placeholder, setPlaceholder] = useState(placeholders[Math.floor(Math.random() * placeholders.length)]);
 
     const animatePlaceholder = (placeholder) => {
@@ -33,8 +33,7 @@ function Input({ text, setText, loading }) {
             animatePlaceholder(newPlaceholder);
         }, 3000);
         return () => clearInterval(interval);
-    }, []);
-
+    }, []);   
 
     return (
         <div className="input-container">

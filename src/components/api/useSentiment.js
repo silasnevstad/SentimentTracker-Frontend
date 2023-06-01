@@ -53,7 +53,6 @@ function parseAllResponse(response) {
   return parsedResponse;
 }
 
-
 function countNumberOfTweetPostsTitles(all_messages) {
   let tweets = 0;
   let posts = 0;
@@ -69,38 +68,11 @@ function countNumberOfTweetPostsTitles(all_messages) {
 const getSentiment = async (response, model) => {
   const { data, keyword } = response;
   let { all_messages } = data;
-  let gpt_response;
-  let messages;
-  const maxRetries = 5;
-  const removePercentage = 0.35;  // Remove 20% of messages at each retry
-  let attempts = 0;
+  const engineeredPrompt = `Thoroughly evaluate the sentiment expressed in the given series of twitter tweets, reddit posts and news headlines, originating from this query: ${keyword}, and provide three comprehensive outputs. First, calculate six emotion scores (ranging from 0 to 100) for joy, surprise, sadness, fear, anger, and neutral, reflecting the prevalence of each emotion. Second, craft a 3-5 sentence summary that succinctly captures the overarching sentiment and highlights critical points and features of importance. Lastly, pinpoint 3-7 keywords that effectively summarize the sentiment, highlighting the most prevalent emotions and features. Present your response as a well-organized list using this exact format: [scores: joy: 0, surprise: 0, sadness: 0, fear: 0, anger: 0, neutral: 0, summary: , keywords: ].`;
 
-  while (attempts < maxRetries) {
-    const engineeredPrompt = `Thoroughly evaluate the sentiment expressed in the given series of twitter tweets, reddit posts and news headlines, originating from this query: ${keyword}, and provide three comprehensive outputs. First, calculate six emotion scores (ranging from 0 to 100) for joy, surprise, sadness, fear, anger, and neutral, reflecting the prevalence of each emotion. Second, craft a 3-5 sentence summary that succinctly captures the overarching sentiment and highlights critical points and features of importance. Lastly, pinpoint 3-7 keywords that effectively summarize the sentiment, highlighting the most prevalent emotions and features. Present your response as a well-organized list using this exact format: [scores: joy: 0, surprise: 0, sadness: 0, fear: 0, anger: 0, neutral: 0, summary: , keywords: ].`;
-    messages = [{'role': 'system', 'content': engineeredPrompt}];
-    // add all tweets, posts, and articles to messages
-    all_messages.forEach((message) => {
-      messages.push({'role': 'user', 'content': message});
-    });
-  
-    try {
-      gpt_response = await openai.createChatCompletion({
-        model: model,
-        messages: messages,
-      });
-      break;
-    } catch (error) {
-      let numToRemove = Math.ceil(all_messages.length * removePercentage);
-      all_messages = all_messages.slice(numToRemove);
-      attempts++;
-    }
-  }
+  const gpt_response = await askGPTWithRetry(all_messages, engineeredPrompt, model);
 
-  if (!gpt_response) {
-    throw new Error('Failed to get a response after maximum retries');
-  }
-  
-  // parse response
+  // Parse response and return
   const parsedResponse = parseAllResponse(gpt_response['data']['choices'][0]['message']['content']);
   const { tweets: numTweets, posts: numPosts, titles: numTitles } = countNumberOfTweetPostsTitles(all_messages);
   parsedResponse['numTweets'] = numTweets;
@@ -111,22 +83,31 @@ const getSentiment = async (response, model) => {
 }
 
 const askAboutData = async (rawData, prompt, model) => {
-  let gpt_response;
-  let messages;
-  const maxRetries = 5;
-  const removePercentage = 0.35;  // Remove 20% of messages at each retry
-  let attempts = 0;
   let { data } = rawData;
   let { all_messages } = data;
   const engineeredPrompt = `Given a series of tweets, posts and news headlines originating from this query ${rawData.keyword}. Answer the following question: ${prompt}. \n\n Here are the tweets, posts and news headlines:`;
-  messages = [{'role': 'system', 'content': engineeredPrompt}];
-  all_messages.forEach((message) => {
-    messages.push({'role': 'user', 'content': message});
-  });
+
+  const gpt_response = await askGPTWithRetry(all_messages, engineeredPrompt, model);
+  
+  // Return the response
+  return gpt_response['data']['choices'][0]['message']['content'];
+}
+
+const askGPTWithRetry = async (all_messages, prompt, model) => {
+  let gpt_response;
+  const maxRetries = 5;
+  const removePercentage = model === 'gpt-3.5-turbo' ? 0.5 : 0.35; // Remove 35% or 50% of messages at each retry
+  let attempts = 0;
+  let messages;
 
   while (attempts < maxRetries) {
-    try {
+    messages = [{'role': 'system', 'content': prompt}];
+    // Add all tweets, posts, and articles to messages
+    all_messages.forEach((message) => {
+      messages.push({'role': 'user', 'content': message});
+    });
 
+    try {
       gpt_response = await openai.createChatCompletion({
         model: model,
         messages: messages,
@@ -144,8 +125,7 @@ const askAboutData = async (rawData, prompt, model) => {
     throw new Error('Failed to get a response after maximum retries');
   }
 
-  // return the response
-  return gpt_response['data']['choices'][0]['message']['content'];
+  return gpt_response;
 }
 
 const useSentiment = (setIsLoading, setError, filter) => {
@@ -187,10 +167,8 @@ const useSentiment = (setIsLoading, setError, filter) => {
     if (!data) {
         throw new Error('No raw data to ask about');
     }
-    let model = filter === 'precision' ? 'gpt-4' : 'gpt-3.5-turbo';
-    return await askAboutData(data, prompt, model);
-};
-
+    return await askAboutData(data, prompt, 'gpt-4');
+  };
 
   return { getSentimentData, askAboutRawData };
 };

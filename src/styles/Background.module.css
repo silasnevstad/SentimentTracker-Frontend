@@ -1,3 +1,6 @@
+.container {
+    max-width: 100vw;
+}
 
 .shape {
     position: absolute;
@@ -47,4 +50,46 @@
     left: 0;
     width: 12%;
     rotate: 160deg;
+}
+
+@media screen and (max-width: 768px) {
+    .container {
+        max-width: 100vw;
+        overflow: hidden;
+        display: none;
+    }
+    .shapeBottomLeft {
+        width: 75%;
+        bottom: 0;
+        left: 0;
+        rotate: 180deg;
+    }
+
+    .shapeRight {
+        bottom: 0;
+        right: 0;
+        width: 75%;
+        rotate: 90deg;
+        margin-top: 35%;
+    }
+
+    .shapeMiddle {
+        width: 50%;
+        top: 0;
+        right: 0;
+    }
+
+    .shapeMiddleLeft {
+        width: 45%;
+        rotate: 270deg;
+        top: 0;
+        left: 0;
+    }
+
+    .shapeBottomRight {
+        bottom: 5%;
+        left: 0;
+        width: 105%;
+        rotate: 160deg;
+    }
 }

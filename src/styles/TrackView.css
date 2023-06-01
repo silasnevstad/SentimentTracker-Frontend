@@ -157,7 +157,8 @@
 }
 
 .track-view-question-input:focus {
-    outline: 1px solid #ccccccdd;
+    outline: none;
+    border: 1px solid #ccccccdd;
 }
 
 .track-view-question-button {
@@ -170,10 +171,13 @@
     font-size: 1.3rem;
     font-weight: 600;
     margin-left: 1em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .track-view-question-button:hover {
-    outline: 1px solid #ccccccdd;
+    border: 1px solid #ccccccdd;
 }
 
 .track-view-question-answer {
@@ -198,7 +202,6 @@
 }
 
 .spinner {
-    align-self: center;
     border: 2px solid #f3f3f3;
     border-radius: 50%;
     border-top: 2px solid #333;

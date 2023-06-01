@@ -115,3 +115,53 @@
     color: #ccc;
     opacity: 0.5;
 }
+
+@media (max-width: 768px) {
+    .switch-container {
+        margin-bottom: 0;
+    }
+
+    .switch-text {
+        font-size: 1.3em;
+        padding: .2em .8em;
+    }
+
+    .switch-text-all {
+        font-size: 1.3em;
+        margin-left: .5em;
+        padding: .2em .8em;
+    }
+
+    .switch {
+        font-size: 1em;
+        width: .9em;
+        height: 2.8em;
+        margin-top: 1.2em;
+    }
+
+    .slider {
+        height: 2.5em;
+    }
+
+    .slider:before {
+        height: .4em;
+        width: 2em;
+        left: -0.5em;
+        top: 0.1em;
+    }
+
+    .slider:after {
+        top: 0.4em;
+        left: 0.45em;
+        width: 1.5em;
+        height: 0.8em;
+    }
+
+    .chk:checked + .slider:before {
+        transform: translateY(1.8em);
+    }
+
+    .chk:checked + .slider:after {
+        transform: rotateZ(90deg) rotateY(180deg) translateY(0.35em) translateX(-1.2em);
+    }
+}
