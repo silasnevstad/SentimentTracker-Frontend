@@ -21,8 +21,11 @@ function Modal({ onClose }) {
         e.preventDefault();
         setLoading(true);
 
+        // add sent from senttrac to end of message
+        const taggedMessage = `${message}\n\nSent from SentTrac`;
+
         // Send the form data to EmailJS
-        emailjs.send('service_hc9akgh', 'template_2cjai8y', { name, email, message }, '5zJalJbOIpV3-eipy')
+        emailjs.send('service_hc9akgh', 'template_2cjai8y', { name, email, taggedMessage  }, '5zJalJbOIpV3-eipy')
             .then((response) => {
                 console.log('Email successfully sent!', response);
                 setLoading(false);
