@@ -96,16 +96,18 @@ const askAboutData = async (rawData, prompt, model) => {
 const askGPTWithRetry = async (all_messages, prompt, model) => {
   let gpt_response;
   const maxRetries = 5;
-  const removePercentage = model === 'gpt-3.5-turbo' ? 0.5 : 0.35; // Remove 35% or 50% of messages at each retry
+  const removePercentage = model === 'gpt-3.5-turbo-0613' ? 0.35 : 0.35; // Remove 35% or 50% of messages at each retry
   let attempts = 0;
   let messages;
 
+  const addMessages = (message) => {
+    messages.push({'role': 'user', 'content': message});
+  };
+  
   while (attempts < maxRetries) {
     messages = [{'role': 'system', 'content': prompt}];
-    // Add all tweets, posts, and articles to messages
-    all_messages.forEach((message) => {
-      messages.push({'role': 'user', 'content': message});
-    });
+    // Use the helper function to add messages.
+    all_messages.forEach(addMessages);
 
     try {
       gpt_response = await openai.createChatCompletion({
@@ -135,7 +137,7 @@ const useSentiment = (setIsLoading, setError, filter) => {
     if (keyword !== '') {
       setIsLoading(true);
   
-      let model = filter === 'precision' ? 'gpt-4' : 'gpt-3.5-turbo';
+      let model = filter === 'precision' ? 'gpt-4' : 'gpt-3.5-turbo-0613';
       let url = `https://boiling-lake-10566.herokuapp.com/`;
   
       let sentimentData = null;
@@ -167,7 +169,7 @@ const useSentiment = (setIsLoading, setError, filter) => {
     if (!data) {
         throw new Error('No raw data to ask about');
     }
-    return await askAboutData(data, prompt, 'gpt-4');
+    return await askAboutData(data, prompt, 'gpt-3.5-turbo-0613');
   };
 
   return { getSentimentData, askAboutRawData };

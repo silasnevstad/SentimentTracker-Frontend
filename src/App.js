@@ -15,7 +15,7 @@ import useSentiment from './components/api/useSentiment';
 function App() {
   const [keyword, setKeyword] = useState('');
   const [searchTerm, setSearchTerm] = useState('');
-  const [filter, setFilter] = useState('precision');
+  const [filter, setFilter] = useState('turbo');
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(false);
   const [showAboutModal, setShowAboutModal] = useState(false);
